@@ -131,7 +131,7 @@ class TelegramUploader:
 
     async def _prepare_file(self, file_, dirpath, delete_file):
         if self._lprefix:
-            cap_mono = f"{self._lprefix} <code>{file_}</code>"
+            cap_mono = f"<b>{self._lprefix} - {file_}</b>"
             self._lprefix = re_sub("<.*?>", "", self._lprefix)
             if (
                 self._listener.seed
@@ -148,7 +148,7 @@ class TelegramUploader:
                 await rename(self._up_path, new_path)
                 self._up_path = new_path
         else:
-            cap_mono = f"<code>{file_}</code>"
+            cap_mono = f"<b>{file_}</b>"
         if len(file_) > 60:
             if is_archive(file_):
                 name = get_base_name(file_)
